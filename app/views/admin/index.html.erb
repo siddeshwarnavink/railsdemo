@@ -1,0 +1,22 @@
+<div class="container_admin">
+  <br><br>
+  <%= form_with(model: @rocket, url: admin_create_path, method: :post) do |form| %>
+    <div class="mb-3">
+      <label for="rocket_Name" class="form-label">Name</label>
+      <%= form.text_field :Name, class: "form-control", id: "rocket_Name" %>
+    </div>
+    <div class="mb-3">
+      <label for="rocket_Price" class="form-label">Price</label>
+      <%= form.number_field :Price, class: "form-control", id: "rocket_Price" %>
+    </div>
+    <div class="mb-3">
+      <label for="rocket_description" class="form-label">Description</label>
+      <%= form.text_area :description, class: "form-control", id: "rocket_description", rows: 3 %>
+    </div>
+    <div class="mb-3">
+      <label for="rocket_Image" class="form-label">Image</label>
+      <%= form.text_field :Image, class: "form-control", id: "rocket_Image" %>
+    </div>
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  <% end %>
+</div>

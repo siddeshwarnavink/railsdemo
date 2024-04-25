@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ .container_admin{
+    max-width: 600px; /* Set a maximum width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+ }
