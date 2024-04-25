@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Rockets</h1>
+
+<div class="row">
+  <% @rockets.each do |rocket| %>
+  <div class="col-sm-3 mb-3 mb-sm-0">
+    <div class="card">
+    <img src=<%=rocket.Image%> class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= rocket.Name %></h5>
+        <p class="card-text"><%= rocket.description %></p>
+         <div class="d-flex align-items-center justify-content-between">
+        <a href="#" class="btn d-block btn-primary">Buy now</a>
+       <b class="d-block text-success"><%=rocket.Price%> BTC</b>
+       </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>
