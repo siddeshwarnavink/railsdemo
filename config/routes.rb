@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root  "hello#index",as:'root'
-  get '/hello',to: "hello#index"
-  post '/admin/create', to: "admin#create" ,as: 'admin_create'
+  get '/home',to: "hello#index"
+
   get '/admin',to: "admin#index"
+  post '/admin', to: "admin#create" ,as: 'admin_create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

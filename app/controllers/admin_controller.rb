@@ -1,10 +1,11 @@
 class AdminController < ApplicationController
-  def create
+  def create()
     @rocket = Rocket.new(rocket_params)
     if @rocket.save
       redirect_to root_path, notice: "Rocket was successfully created."
     else
-      render :new
+      flash.now[:alert] = "Rocket creation failed."
+      render :index
     end
   end
 

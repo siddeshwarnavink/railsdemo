@@ -1,21 +1,41 @@
-<div class="container_admin">
+<div class="container_admin" data-turbo="false">
   <br><br>
-  <%= form_with(model: @rocket, url: admin_create_path, method: :post) do |form| %>
+  <%= form_with(model: @rocket, url: admin_create_path, method: :post ,class: 'needs-validation', novalidate: true) do |form| %>
     <div class="mb-3">
       <label for="rocket_Name" class="form-label">Name</label>
-      <%= form.text_field :Name, class: "form-control", id: "rocket_Name" %>
+      <%= form.text_field :Name, class: "form-control #{'is-invalid' if @rocket.errors[:Name].present?}", id: "rocket_Name" %>
+      <% if @rocket.errors[:Name].present? %>
+        <div class="invalid-feedback d-block">
+          <%= @rocket.errors[:Name].first %>
+        </div>
+      <% end %>
     </div>
     <div class="mb-3">
       <label for="rocket_Price" class="form-label">Price</label>
-      <%= form.number_field :Price, class: "form-control", id: "rocket_Price" %>
+      <%= form.number_field :Price, class: "form-control #{'is-invalid' if @rocket.errors[:Price].present?}", id: "rocket_Price" %>
+      <% if @rocket.errors[:Price].present? %>
+        <div class="invalid-feedback d-block">
+          <%= @rocket.errors[:Price].first %>
+        </div>
+      <% end %>
     </div>
     <div class="mb-3">
       <label for="rocket_description" class="form-label">Description</label>
-      <%= form.text_area :description, class: "form-control", id: "rocket_description", rows: 3 %>
+      <%= form.text_area :description, class: "form-control #{'is-invalid' if @rocket.errors[:description].present?}", id: "rocket_description", rows: 3 %>
+      <% if @rocket.errors[:description].present? %>
+        <div class="invalid-feedback d-block">
+          <%= @rocket.errors[:description].first %>
+        </div>
+      <% end %>
     </div>
     <div class="mb-3">
       <label for="rocket_Image" class="form-label">Image</label>
-      <%= form.text_field :Image, class: "form-control", id: "rocket_Image" %>
+      <%= form.text_field :Image, class: "form-control #{'is-invalid' if @rocket.errors[:Image].present?}", id: "rocket_Image" %>
+      <% if @rocket.errors[:Image].present? %>
+        <div class="invalid-feedback d-block">
+          <%= @rocket.errors[:Image].first %>
+        </div>
+      <% end %>
     </div>
     <%= form.submit "Create", class: "btn btn-primary" %>
   <% end %>
