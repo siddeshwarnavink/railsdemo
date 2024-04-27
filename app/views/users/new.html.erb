@@ -1,0 +1,26 @@
+<!-- app/views/users/new.html.erb -->
+<div  class="container_signup">
+  <br>
+  <div class="text-center"> <!-- Center-align the "Sign Up" text -->
+    <h2>Join Us!</h2>
+  </div>
+  <br>
+<%= form_with model: @user, url: sign_up_path do |form| %>
+  <%= render partial: "shared/form_errors", locals: { object: form.object } %>
+  <div class="mb-3">
+    <%# <label for="rocket_Name" class="form-label">Email</label> %>
+    <%= form.email_field :email, required: true, class: "form-control",placeholder:"Email" %>
+  </div>
+  <div class="mb-3">
+    <%# <label for="rocket_Name" class="form-label">Password</label> %>
+    <%= form.password_field :password, required: true , class: "form-control",placeholder:"Password" %>
+  </div>
+  <div class="mb-3">
+    <%# <label for="rocket_Name" class="form-label">Confirm Password</label> %>
+    <%= form.password_field :password_confirmation, required: true , class: "form-control",placeholder:"Confirm Password" %>
+  </div>
+  <div class="d-grid gap-2">
+  <%= form.submit "Sign Up", class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

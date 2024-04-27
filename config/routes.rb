@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root  "hello#index",as:'root'
   get '/home',to: "hello#index"
+  post "sign_up", to: "users#create"
+  get "sign_up", to: "users#new"
 
   get '/admin',to: "admin#index"
   post '/admin', to: "admin#create" ,as: 'admin_create'
