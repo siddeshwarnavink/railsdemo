@@ -1,23 +1,38 @@
-<!-- app/views/users/new.html.erb -->
+
 <div  class="container_signup">
   <br>
-  <div class="text-center"> <!-- Center-align the "Sign Up" text -->
+  <div class="text-center"> 
     <h2>Join Us!</h2>
   </div>
   <br>
 <%= form_with model: @user, url: sign_up_path do |form| %>
-  <%= render partial: "shared/form_errors", locals: { object: form.object } %>
+
   <div class="mb-3">
-    <%# <label for="rocket_Name" class="form-label">Email</label> %>
-    <%= form.email_field :email, required: true, class: "form-control",placeholder:"Email" %>
+
+    <%= form.email_field :email, class: "form-control #{'is-invalid' if @user.errors[:email].present?}",placeholder:"Email" %>
+          <% if @user.errors[:email].present? %>
+        <div class="invalid-feedback d-block">
+          <%= @user.errors[:email].first %>
+        </div>
+      <% end %>
   </div>
   <div class="mb-3">
-    <%# <label for="rocket_Name" class="form-label">Password</label> %>
-    <%= form.password_field :password, required: true , class: "form-control",placeholder:"Password" %>
+
+    <%= form.password_field :password , class: "form-control #{'is-invalid' if @user.errors[:password].present?}",placeholder:"Password" %>
+        <% if @user.errors[:password].present? %>
+      <div class="invalid-feedback d-block">
+          <%= "Password " + @user.errors[:password].first  %>
+        </div>
+        <% end %>
   </div>
   <div class="mb-3">
-    <%# <label for="rocket_Name" class="form-label">Confirm Password</label> %>
-    <%= form.password_field :password_confirmation, required: true , class: "form-control",placeholder:"Confirm Password" %>
+
+    <%= form.password_field :password_confirmation , class: "form-control #{'is-invalid' if @user.errors[:password_confirmation].present?}",placeholder:"Confirm Password" %>
+     <% if @user.errors[:password_confirmation].present? %>
+    <div class="invalid-feedback d-block">
+          <%= "Password " + @user.errors[:password_confirmation].first %>
+        </div>
+         <% end %>
   </div>
   <div class="d-grid gap-2">
   <%= form.submit "Sign Up", class: "btn btn-primary" %>
