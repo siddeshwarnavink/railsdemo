@@ -22,7 +22,7 @@ module Authentication
   end
 
   def redirect_if_not_authenticated
-    redirect_to root_path, alert: "You need to login before continuing" unless user_signed_in?
+    redirect_to login_path, alert: "You need to login before continuing" unless user_signed_in?
   end
 
   def user_signed_in?
