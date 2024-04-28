@@ -1,4 +1,7 @@
 class AdminController < ApplicationController
+  include Authentication
+  before_action :redirect_if_not_authenticated
+  
   def create()
     @rocket = Rocket.new(rocket_params)
     if @rocket.save

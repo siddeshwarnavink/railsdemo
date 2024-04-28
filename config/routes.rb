@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post "sign_up", to: "users#create"
   get "sign_up", to: "users#new"
   post "login", to: "login#create" , as: "login"
-  delete "logout", to: "login#destroy"
+  post "logout", to: "login#destroy"
   get "login", to: "login#new"
   get '/admin',to: "admin#index"
   post '/admin', to: "admin#create" ,as: 'admin_create'
