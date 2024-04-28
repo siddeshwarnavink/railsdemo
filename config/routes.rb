@@ -1,19 +1,14 @@
 Rails.application.routes.draw do
-  root  "hello#index",as:'root'
-  get '/home',to: "hello#index"
-  post "sign_up", to: "users#create"
-  get "sign_up", to: "users#new"
-  post "login", to: "login#create" , as: "login"
-  post "logout", to: "login#destroy"
-  get "login", to: "login#new"
-  get '/admin',to: "admin#index"
-  post '/admin', to: "admin#create" ,as: 'admin_create'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "store#index", as: 'root'
+  get '/home', to: "store#index", as: "home"
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  get "/auth/signup", to: "auth#get_signup", as: "signup"
+  post "/auth/signup", to: "auth#post_signup"
+  get "/auth/login", to: "auth#get_login", as: "login"
+  post "/auth/logout", to: "auth#post_logout"
+
+  get '/admin/create', to: "admin#create", as: "create_product"
+  post '/admin/create', to: "admin#post_create", as: 'admin_create'
+
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
