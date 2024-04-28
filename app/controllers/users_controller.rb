@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path, notice: "Please check your email for confirmation instructions."
+      redirect_to login_path, notice: "Account created! Please login now"
     else
       render :new, status: :unprocessable_entity
     end

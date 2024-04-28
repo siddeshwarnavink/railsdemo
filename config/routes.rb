@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get '/home',to: "hello#index"
   post "sign_up", to: "users#create"
   get "sign_up", to: "users#new"
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
-  get "login", to: "sessions#new"
+  post "login", to: "login#create" , as: "login"
+  delete "logout", to: "login#destroy"
+  get "login", to: "login#new"
   get '/admin',to: "admin#index"
   post '/admin', to: "admin#create" ,as: 'admin_create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
