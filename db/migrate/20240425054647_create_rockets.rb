@@ -3,7 +3,6 @@ class CreateRockets < ActiveRecord::Migration[7.1]
     create_table :rockets do |t|
       t.string :Name
       t.float :Price
-      t.text :description
       t.string :Image
 
       t.timestamps
