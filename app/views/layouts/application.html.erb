@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar bg-dark border-bottom border-body navbar-expand-lg" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="<%= home_path %>">Rocket Plaza</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,21 +27,22 @@
         </li>
         <% if session[:current_user_id].present? %>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="<%= create_path %>">Admin</a>
+            <a class="nav-link active" aria-current="page" href="<%= create_path %>">Create Product</a>
           </li>
         <% end %>
       </ul>
       <% if session[:current_user_id].present? %>
         <form class="d-flex" action="/auth/logout" method="post">
-          <button class="btn btn-outline-primary" type="submit">Logout</button>
+          <button class="btn" type="submit">Logout</button>
         </form>
       <% else %>
-        <a href="<%= login_path %>" class="d-flex btn btn-outline-primary me-2" type="submit">Login</a>
+        <a href="<%= login_path %>" class="d-flex btn me-2" type="submit">Login</a>
         <a href="<%= signup_path %>" class="d-flex btn btn-primary" type="submit">Sign up</a>
       <% end %>
     </div>
   </div>
 </nav>
 <%= yield %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
