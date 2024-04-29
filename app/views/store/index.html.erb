@@ -18,9 +18,16 @@
             <div class="d-flex align-items-center justify-content-between">
               <div class="d-flex">
                 <a href="#" class="btn d-block btn-primary">Buy now</a>
-                <a href="<%= edit_path rocket.id %>" class="btn d-block ml-3">
-                  <i class="bi bi-pencil"></i>
-                </a>
+                <% if session[:current_user_id].present? %>
+                  <a href="<%= edit_path rocket.id %>" class="btn d-block ml-3">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <%= form_with(url: delete_path(rocket.id), method: :post) do |form| %>
+                    <button class="btn" type="submit">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  <% end %>
+                <% end %>
               </div>
               <b class="d-block text-success"><%= rocket.Price %> BTC</b>
             </div>

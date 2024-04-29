@@ -30,6 +30,12 @@ AdminController < ApplicationController
     end
   end
 
+  def delete
+    @rocket = Rocket.find(params[:id])
+    @rocket.delete
+    redirect_to root_path, notice: "Product deleted successfully."
+  end
+
   private
 
   def form_params
