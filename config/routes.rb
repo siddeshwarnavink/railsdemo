@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/admin/create', to: "admin#create", as: "create_product"
   post '/admin/create', to: "admin#post_create", as: 'admin_create'
+  get '/admin/edit/:id', to: "admin#edit", as: "edit"
+  post '/admin/edit/:id', to: "admin#post_edit"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

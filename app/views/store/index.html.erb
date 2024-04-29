@@ -16,7 +16,12 @@
             <h5 class="card-title"><%= rocket.Name %></h5>
             <p class="card-text"><%= rocket.description %></p>
             <div class="d-flex align-items-center justify-content-between">
-              <a href="#" class="btn d-block btn-primary">Buy now</a>
+              <div class="d-flex">
+                <a href="#" class="btn d-block btn-primary">Buy now</a>
+                <a href="<%= edit_path rocket.id %>" class="btn d-block ml-3">
+                  <i class="bi bi-pencil"></i>
+                </a>
+              </div>
               <b class="d-block text-success"><%= rocket.Price %> BTC</b>
             </div>
           </div>
