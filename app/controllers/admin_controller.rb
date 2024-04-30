@@ -32,7 +32,7 @@ AdminController < ApplicationController
 
   def delete
     @rocket = Rocket.find(params[:id])
-    @rocket.delete
+    @rocket.destroy
     redirect_to root_path, notice: "Product deleted successfully."
   end
 

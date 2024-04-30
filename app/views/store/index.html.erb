@@ -31,7 +31,7 @@
     <% @rockets.each do |rocket| %>
       <div class="col-sm-3 mb-3 mb-sm-0">
         <div class="card mb-3">
-          <%= image_tag(rocket.image, class: "card-img-top") %>
+          <%= image_tag(rocket.image_as_thumbnail, class: "card-img-top") if rocket.image.attached? %>
           <div class="card-body">
             <h5 class="card-title"><%= rocket.Name %></h5>
             <p class="card-text"><%= rocket.description %></p>
