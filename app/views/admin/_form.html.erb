@@ -26,11 +26,11 @@
     <% end %>
   </div>
   <div class="mb-3">
-    <label for="rocket_Image" class="form-label">Image</label>
-    <%= form.text_field :Image, class: "form-control #{'is-invalid' if @rocket.errors[:Image].present?}", id: "rocket_Image" %>
-    <% if @rocket.errors[:Image].present? %>
+    <label for="rocket_Image" class="form-label">Thumbnail</label>
+    <%= form.file_field :image, class: "form-control #{'is-invalid' if @rocket.errors[:image].present?}", id: "rocket_Image" %>
+    <% if @rocket.errors[:image].present? %>
       <div class="invalid-feedback d-block">
-        <%= @rocket.errors[:Image].first %>
+        <%= @rocket.errors[:image].first %>
       </div>
     <% end %>
   </div>
