@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "store#index", as: 'root'
   get '/home', to: "store#index", as: "home"
+  get '/api/products.json', to: "store#api_index", as: "api_products"
 
   get "/auth/signup", to: "auth#get_signup", as: "signup"
   post "/auth/signup", to: "auth#post_signup"

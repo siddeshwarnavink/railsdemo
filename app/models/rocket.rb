@@ -9,6 +9,13 @@ class Rocket < ApplicationRecord
   validates :description, presence: { message: "Provide a valid description" }
   validates :image, presence: { message: "Provide a valid thumbnail" }
 
+  def api_mapping
+    attributes.symbolize_keys.merge(
+      description: description.to_plain_text,
+      thumbnail_url: thumbnail_url
+    )
+  end
+
   def image_as_thumbnail
     image.variant(resize_to_limit: [500, 500]).processed
   end
@@ -18,5 +25,13 @@ class Rocket < ApplicationRecord
   def purge_image_variants
     image.variant_records.each(&:destroy)
     image.purge_later
+  end
+
+  def thumbnail_url
+    if image.attached?
+      Rails.application.routes.url_helpers.rails_representation_url(image_as_thumbnail, only_path: true)
+    else
+      nil
+    end
   end
 end
