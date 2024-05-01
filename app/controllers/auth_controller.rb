@@ -34,4 +34,17 @@ class AuthController < ApplicationController
       render :get_signup, status: :unprocessable_entity
     end
   end
+
+  def api_login
+    @user = User.find_by(email: params[:user][:email].downcase)
+    if @user.present? && @user.authenticate(params[:user][:password])
+      @token = encode_token(user_id: @user.id)
+      render json: {
+        user: UserSerializer.new(@user),
+        token: @token
+      }, status: :ok
+    else
+      render json: { message: "Incorrect email or password." }, status: :bad_request
+    end
+  end
 end
