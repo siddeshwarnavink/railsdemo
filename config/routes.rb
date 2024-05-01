@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/admin/edit/:id', to: "admin#edit", as: "edit"
   post '/admin/edit/:id', to: "admin#post_edit"
   post '/admin/delete/:id', to: "admin#delete", as: "delete"
+  post '/api/products.json', to: "admin#api_create"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
