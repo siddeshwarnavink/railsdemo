@@ -47,7 +47,7 @@ module Authentication
   private
 
   def encode_token(payload)
-    JWT.encode(payload, 'supersecretpassword')
+    JWT.encode(payload, ENV['JWT_SECRET'])
   end
 
   def decoded_token
@@ -55,7 +55,7 @@ module Authentication
     if header
       token = header.split(" ")[1]
       begin
-        JWT.decode(token, 'supersecretpassword')
+        JWT.decode(token, ENV['JWT_SECRET'])
       rescue JWT::DecodeError
         nil
       end
