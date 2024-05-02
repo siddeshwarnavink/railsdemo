@@ -1,5 +1,4 @@
-class
-AdminController < ApplicationController
+class AdminController < ApplicationController
   include Authentication
   before_action :redirect_if_not_authenticated
 
@@ -10,9 +9,9 @@ AdminController < ApplicationController
   def post_create
     @rocket = Rocket.new(form_params)
     if @rocket.save
-      redirect_to root_path, notice: "Rocket was successfully created."
+      redirect_to root_path, notice: 'Rocket was successfully created.'
     else
-      flash.now[:alert] = "Rocket creation failed."
+      flash.now[:alert] = 'Rocket creation failed.'
       render :create
     end
   end
@@ -24,7 +23,7 @@ AdminController < ApplicationController
   def post_edit
     @rocket = Rocket.find(params[:id])
     if @rocket.update(form_params)
-      redirect_to root_path, notice: "Product updated successfully."
+      redirect_to root_path, notice: 'Product updated successfully.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +32,7 @@ AdminController < ApplicationController
   def delete
     @rocket = Rocket.find(params[:id])
     @rocket.destroy
-    redirect_to root_path, notice: "Product deleted successfully."
+    redirect_to root_path, notice: 'Product deleted successfully.'
   end
 
   def api_create
@@ -49,6 +48,6 @@ AdminController < ApplicationController
   private
 
   def form_params
-    params.require(:rocket).permit(:Name, :Price, :description, :image)
+    params.require(:rocket).permit(:Name, :Price, :description, :image, :launch_at)
   end
 end

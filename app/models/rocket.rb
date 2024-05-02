@@ -4,15 +4,16 @@ class Rocket < ApplicationRecord
 
   after_destroy_commit :purge_image_variants
 
-  validates :Name, presence: { message: "Provide a valid name" }
-  validates :Price, presence: { message: "Provide a valid price" }, numericality: { greater_than_or_equal_to: 0 }
-  validates :description, presence: { message: "Provide a valid description" }
-  validates :image, presence: { message: "Provide a valid thumbnail" }
+  validates :Name, presence: { message: 'Provide a valid name' }
+  validates :Price, presence: { message: 'Provide a valid price' }, numericality: { greater_than_or_equal_to: 0 }
+  validates :description, presence: { message: 'Provide a valid description' }
+  validates :image, presence: { message: 'Provide a valid thumbnail' }
+  validates :launch_at, presence: { message: 'Provide a valid launch date' }
 
   def api_mapping
     attributes.symbolize_keys.merge(
       description: description.to_plain_text,
-      thumbnail_url: thumbnail_url
+      thumbnail_url:
     )
   end
 
@@ -28,10 +29,8 @@ class Rocket < ApplicationRecord
   end
 
   def thumbnail_url
-    if image.attached?
-      Rails.application.routes.url_helpers.rails_representation_url(image_as_thumbnail, only_path: true)
-    else
-      nil
-    end
+    return unless image.attached?
+
+    Rails.application.routes.url_helpers.rails_representation_url(image_as_thumbnail, only_path: true)
   end
 end

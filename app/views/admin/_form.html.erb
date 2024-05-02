@@ -34,4 +34,13 @@
       </div>
     <% end %>
   </div>
+  <div class="mb-3">
+    <label for="rocket_Image" class="form-label">Launch At</label>
+    <%= form.datetime_local_field :launch_at, class: "form-control #{'is-invalid' if @rocket.errors[:image].present?}", id: "rocket_LaunchAt" %>
+    <% if @rocket.errors[:launch_at].present? %>
+      <div class="invalid-feedback d-block">
+        <%= @rocket.errors[:launch_at].first %>
+      </div>
+    <% end %>
+  </div>
 

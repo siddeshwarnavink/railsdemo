@@ -35,9 +35,9 @@
           <div class="card-body">
             <h5 class="card-title"><%= rocket.Name %></h5>
             <p class="card-text"><%= rocket.description %></p>
-            <div class="d-flex align-items-center justify-content-between">
+            <small class="text-muted">Launch at <%= rocket.launch_at.strftime("%e %b %y, %I:%S %p") %></span>
+            <div class="d-flex align-items-center justify-content-between mt-2">
               <div class="d-flex">
-                <a href="#" class="btn d-block btn-outline-primary">View</a>
                 <% if session[:current_user_id].present? %>
                   <a href="<%= edit_path rocket.id %>" class="btn d-block ml-3">
                     <i class="bi bi-pencil"></i>
