@@ -36,21 +36,23 @@
             <h5 class="card-title"><%= rocket.Name %></h5>
             <p class="card-text"><%= rocket.description %></p>
             <small class="text-muted">Launch at <%= rocket.launch_at.strftime("%e %b %y, %I:%S %p") %></span>
-            <div class="d-flex align-items-center justify-content-between mt-2">
-              <div class="d-flex">
-                <% if session[:current_user_id].present? %>
-                  <a href="<%= edit_path rocket.id %>" class="btn d-block ml-3">
-                    <i class="bi bi-pencil"></i>
-                  </a>
-                  <%= form_with(url: delete_path(rocket.id), method: :post, html: { onsubmit: 'onDelete(event)' }) do |form| %>
-                    <button class="btn" type="submit">
-                      <i class="bi bi-trash text-danger"></i>
-                    </button>
+              <div class="d-flex align-items-center justify-content-between mt-2">
+                <div class="d-flex">
+                  <% if session[:current_user_id].present? %>
+                    <%= link_to edit_path(rocket.id), class: "btn", data: {
+                      turbo_frame: "modal",
+                    } do %>
+                      <i class="bi bi-pencil"></i>
+                    <% end %>
+                    <%= form_with(url: delete_path(rocket.id), method: :post, html: { onsubmit: 'onDelete(event)' }) do |form| %>
+                      <button class="btn" type="submit">
+                        <i class="bi bi-trash text-danger"></i>
+                      </button>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
+                <b class="d-block text-success"><%= rocket.Price %> BTC</b>
               </div>
-              <b class="d-block text-success"><%= rocket.Price %> BTC</b>
-            </div>
           </div>
         </div>
       </div>
@@ -58,22 +60,22 @@
   </div>
 </div>
 <% if session[:current_user_id].present? %>
-<script>
-  const modal = new bootstrap.Modal("#deleteProductModal");
-  let formEl = null;
+  <script>
+      const modal = new bootstrap.Modal("#deleteProductModal");
+      let formEl = null;
 
-  function onDelete(event) {
-    event.preventDefault();
-    formEl = event.srcElement;
-    modal.show();
-  }
+      function onDelete(event) {
+          event.preventDefault();
+          formEl = event.srcElement;
+          modal.show();
+      }
 
-  document.getElementById("deleteConfirm").addEventListener("click", function (event) {
-    if(formEl !== null) {
-      modal.hide();
-      formEl.submit();
-      formEl = null;
-    }
-  });
-</script>
+      document.getElementById("deleteConfirm").addEventListener("click", function (event) {
+          if (formEl !== null) {
+              modal.hide();
+              formEl.submit();
+              formEl = null;
+          }
+      });
+  </script>
 <% end %>

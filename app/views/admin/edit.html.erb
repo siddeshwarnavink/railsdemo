@@ -1,8 +1,22 @@
-<div class="container_admin" data-turbo="false">
-  <br><br>
-  <h4 class="mb-3">Edit Product</h4>
-  <%= form_with(model: @rocket, url: edit_path, method: :post ,class: 'needs-validation', novalidate: true) do |form| %>
-    <%= render partial: 'admin/form' , locals: { form: form } %>
-    <%= form.submit "Save", class: "btn btn-primary" %>
-  <% end %>
-</div>
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal d-block" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%= form_with(model: @rocket, url: edit_path, method: :post, class: 'needs-validation', novalidate: true) do |form| %>
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Product</h5>
+          </div>
+          <div class="modal-body">
+            <%= render partial: 'admin/form', locals: { form: form } %>
+          </div>
+          <div class="modal-footer">
+            <%= form.submit "Save", class: "btn btn-primary" %>
+            <%= link_to "Cancel", nil, class: "btn", data: {
+              controller: "modals",
+              action: "modals#close"
+            } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+<% end %>
