@@ -8,7 +8,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'rack-cors'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
 
 gem 'mysql2', '~> 0.5.2'
 
@@ -70,3 +69,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "sassc-rails", "~> 2.1"
