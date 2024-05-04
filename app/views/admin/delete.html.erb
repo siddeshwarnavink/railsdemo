@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "modal" do %>
-  <div class="modal" id="bsModal" tabindex="-1" role="dialog">
+  <div class="modal fade" id="bsModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <%= form_with(url: delete_confirm_path, method: :post) do |form| %>
@@ -19,8 +19,9 @@
         <% end %>
       </div>
     </div>
-    <script>
-        window.BS_MODAL = new bootstrap.Modal("#bsModal");
-        BS_MODAL.show();
-    </script>
+  </div>
+  <script>
+      window.BS_MODAL = new bootstrap.Modal("#bsModal");
+      BS_MODAL.show();
+  </script>
 <% end %>

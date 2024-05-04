@@ -16,24 +16,24 @@
           <div class="card-body">
             <h5 class="card-title"><%= rocket.Name %></h5>
             <p class="card-text"><%= rocket.description %></p>
-            <small class="text-muted">Launch at <%= rocket.launch_at.strftime("%e %b %y, %I:%M %p") %></span>
-              <div class="d-flex align-items-center justify-content-between mt-2">
-                <div class="d-flex">
-                  <% if session[:current_user_id].present? %>
-                    <%= link_to edit_path(rocket.id), class: "btn", data: {
-                      turbo_frame: "modal",
-                    } do %>
-                      <i class="bi bi-pencil"></i>
-                    <% end %>
-                    <%= link_to delete_path(rocket.id), class: "btn", data: {
-                      turbo_frame: "modal",
-                    } do %>
-                      <i class="bi bi-trash text-danger"></i>
-                    <% end %>
+            <small class="text-muted">Launch at <%= rocket.launch_at.strftime("%e %b %y, %I:%M %p") %></small>
+            <div class="d-flex align-items-center justify-content-between mt-2">
+              <div class="d-flex">
+                <% if session[:current_user_id].present? %>
+                  <%= link_to edit_path(rocket.id), class: "btn", data: {
+                    turbo_frame: "modal",
+                  } do %>
+                    <i class="bi bi-pencil"></i>
                   <% end %>
-                </div>
-                <b class="d-block text-success"><%= rocket.Price %> BTC</b>
+                  <%= link_to delete_path(rocket.id), class: "btn", data: {
+                    turbo_frame: "modal",
+                  } do %>
+                    <i class="bi bi-trash text-danger"></i>
+                  <% end %>
+                <% end %>
               </div>
+              <b class="d-block text-success"><%= rocket.Price %> BTC</b>
+            </div>
           </div>
         </div>
       </div>

@@ -25,14 +25,7 @@ class AdminController < ApplicationController
     if @rocket.update(form_params)
       flash.now[:alert] = 'Product updated successfully.'
       respond_to do |format|
-        format.turbo_stream do
-          @rockets = Rocket.all
-          render turbo_stream: [
-            turbo_stream.replace("modal", '<turbo-frame id="modal"></turbo-frame>'),
-            turbo_stream.replace("page", template: "store/index")
-          ]
-        end
-        format.html { redirect_to root_path }
+        clean_stream_root format
       end
     else
       render :edit, status: :unprocessable_entity
@@ -47,14 +40,7 @@ class AdminController < ApplicationController
     @rocket.destroy
     flash.now[:alert] = 'Product deleted successfully.'
     respond_to do |format|
-      format.turbo_stream do
-        @rockets = Rocket.all
-        render turbo_stream: [
-          turbo_stream.replace("modal", '<turbo-frame id="modal"></turbo-frame>'),
-          turbo_stream.replace("page", template: "store/index")
-        ]
-      end
-      format.html { redirect_to root_path }
+      clean_stream_root format
     end
   end
 
@@ -72,5 +58,16 @@ class AdminController < ApplicationController
 
   def form_params
     params.require(:rocket).permit(:Name, :Price, :description, :image, :launch_at)
+  end
+
+  def clean_stream_root(format)
+    format.turbo_stream do
+      @rockets = Rocket.all
+      render turbo_stream: [
+        turbo_stream.replace("modal", '<turbo-frame id="modal"></turbo-frame>'),
+        turbo_stream.replace("page", template: "store/index")
+      ]
+    end
+    format.html { redirect_to root_path }
   end
 end
