@@ -13,6 +13,7 @@ class AuthController < ApplicationController
       redirect_to root_path, notice: "Signed in."
     else
       flash.now[:alert] = "Incorrect email or password."
+      @user ||= User.new
       render :get_login, status: :unprocessable_entity
     end
   end

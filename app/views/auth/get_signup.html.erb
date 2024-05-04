@@ -1,9 +1,8 @@
-<div class="container_signup">
-  <br>
-  <div class="text-center">
+<div data-turbo="false" class="container_signup container-fluid">
+  <div class="text-center mb-3">
     <h2>Join Us!</h2>
   </div>
-  <br>
+
   <% flash.each do |type, msg| %>
     <div class="alert alert-danger mb-3">
       <%= msg %>

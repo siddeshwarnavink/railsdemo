@@ -1,5 +1,4 @@
-<div class="container_admin" data-turbo="false">
-  <br><br>
+<div class="container_admin container-fluid" data-turbo="false">
   <h4 class="mb-3">Create Product</h4>
   <%= form_with(model: @rocket, url: create_path, method: :post ,class: 'needs-validation', novalidate: true) do |form| %>
     <%= render partial: 'admin/form' , locals: { form: form } %>
