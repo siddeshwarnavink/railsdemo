@@ -23,15 +23,16 @@ class AdminController < ApplicationController
   def post_edit
     @rocket = Rocket.find(params[:id])
     if @rocket.update(form_params)
+      flash.now[:alert] = 'Product updated successfully.'
       respond_to do |format|
         format.turbo_stream do
           @rockets = Rocket.all
           render turbo_stream: [
-            turbo_stream.remove("modal"),
+            turbo_stream.replace("modal", '<turbo-frame id="modal"></turbo-frame>'),
             turbo_stream.replace("page", template: "store/index")
           ]
         end
-        format.html { redirect_to root_path, notice: 'Product updated successfully.' }
+        format.html { redirect_to root_path }
       end
     else
       render :edit, status: :unprocessable_entity
