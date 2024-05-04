@@ -12,35 +12,37 @@
 </head>
 
 <body>
-  <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="<%= home_path %>">Rocket Plaza</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="<%= home_path %>">Home</a>
-          </li>
-          <% if session[:current_user_id].present? %>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="<%= create_path %>">Create Product</a>
-            </li>
-          <% end %>
-        </ul>
+<nav class="navbar bg-dark border-bottom border-body navbar-expand-lg" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= home_path %>">Rocket Plaza</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="<%= home_path %>">Home</a>
+        </li>
         <% if session[:current_user_id].present? %>
-          <form class="d-flex" action="/auth/logout" method="post">
-            <button class="btn" type="submit">Logout</button>
-          </form>
-        <% else %>
-          <a href="<%= login_path %>" class="d-flex btn me-2" type="submit">Login</a>
-          <a href="<%= signup_path %>" class="d-flex btn btn-primary" type="submit">Sign up</a>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="<%= create_path %>">Create Product</a>
+          </li>
         <% end %>
-      </div>
+      </ul>
+      <% if session[:current_user_id].present? %>
+        <form class="d-flex" action="/auth/logout" method="post">
+          <button class="btn" type="submit">Logout</button>
+        </form>
+      <% else %>
+        <a href="<%= login_path %>" class="d-flex btn me-2" type="submit">Login</a>
+        <a href="<%= signup_path %>" class="d-flex btn btn-primary" type="submit">Sign up</a>
+      <% end %>
     </div>
-  </nav>
-  <%= turbo_frame_tag "modal" %>
+  </div>
+</nav>
+<%= turbo_frame_tag "modal" %>
+<turbo-frame id="page">
   <%= yield %>
+</turbo-frame>
 </body>
 </html>
