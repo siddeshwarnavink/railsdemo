@@ -40,9 +40,22 @@ class AdminController < ApplicationController
   end
 
   def delete
+  end
+
+  def delete_delete
     @rocket = Rocket.find(params[:id])
     @rocket.destroy
-    redirect_to root_path, notice: 'Product deleted successfully.'
+    flash.now[:alert] = 'Product deleted successfully.'
+    respond_to do |format|
+      format.turbo_stream do
+        @rockets = Rocket.all
+        render turbo_stream: [
+          turbo_stream.replace("modal", '<turbo-frame id="modal"></turbo-frame>'),
+          turbo_stream.replace("page", template: "store/index")
+        ]
+      end
+      format.html { redirect_to root_path }
+    end
   end
 
   def api_create
