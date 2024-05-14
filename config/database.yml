@@ -1,20 +1,17 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  host: <%= ENV.fetch('DB_HOST') { 'localhost' } %>
-  port: <%= ENV.fetch('DB_PORT') { 3306 } %>
+  adapter: mysql
+  # adapter: jdbcmysql
+  # driver: com.mysql.cj.jdbc.Driver
+  username: siddeshwar
+  password: sM62Ahm5>J:+<9}D-y"d#u
+  # url: jdbc:mysql://localhost:3306/rails_demo
+  database: rails_demo
 
 development:
   <<: *default
-  database: <%= ENV['DB_NAME_DEVELOPMENT'] %>
 
 test:
   <<: *default
-  database: <%= ENV['DB_NAME_TEST'] %>
 
 production:
   <<: *default
-  database: <%= ENV['DB_NAME_PRODUCTION'] %>

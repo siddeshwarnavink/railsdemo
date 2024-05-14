@@ -32,8 +32,7 @@ class AdminController < ApplicationController
     end
   end
 
-  def delete
-  end
+  def delete; end
 
   def delete_delete
     @rocket = Rocket.find(params[:id])
@@ -64,8 +63,8 @@ class AdminController < ApplicationController
     format.turbo_stream do
       @rockets = Rocket.all
       render turbo_stream: [
-        turbo_stream.replace("modal", '<turbo-frame id="modal"></turbo-frame>'),
-        turbo_stream.replace("page", template: "store/index")
+        turbo_stream.replace('modal', '<turbo-frame id="modal"></turbo-frame>'),
+        turbo_stream.replace('page', template: 'store/index')
       ]
     end
     format.html { redirect_to root_path }
